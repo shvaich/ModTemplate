@@ -18,7 +18,7 @@ public abstract class ConfigGuiElement {
 
     public abstract String getCategory();
 
-     public abstract String getSubcategory();
+    public abstract String getSubcategory();
 
     public boolean matchSearch(String search) { return false; }
 

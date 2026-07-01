@@ -7,11 +7,20 @@ import me.name.modtemplate.utils.GuiUtil;
 import net.minecraft.client.gui.GuiButton;
 
 public class ConfigBooleanButton extends ConfigGuiButton {
-    private final GuiButton button;
-    private boolean isOn;
+    protected GuiButton button;
+    protected boolean isOn;
 
     public ConfigBooleanButton(ConfigScreen screen, ConfigFieldContainer fieldData) throws IllegalAccessException {
-        super(screen, fieldData);
+        this(screen, fieldData, true);
+    }
+
+    protected ConfigBooleanButton(ConfigScreen screen, ConfigFieldContainer fieldData, boolean initialize) throws IllegalAccessException {
+        super(screen, fieldData, initialize);
+    }
+
+    @Override
+    protected void initialize() throws IllegalAccessException {
+        super.initialize();
         this.isOn = getBoolean();
         this.button = getMcGuiButton(getMcButtonText(isOn));
     }
@@ -59,11 +68,11 @@ public class ConfigBooleanButton extends ConfigGuiButton {
         button.displayString = getMcButtonText(isOn);
     }
 
-    private boolean getBoolean() throws IllegalAccessException {
+    protected boolean getBoolean() throws IllegalAccessException {
         return fieldData.getBoolean();
     }
 
-    private void toggleBoolean() throws IllegalAccessException {
+    protected void toggleBoolean() throws IllegalAccessException {
         fieldData.setValue(!getBoolean());
     }
 

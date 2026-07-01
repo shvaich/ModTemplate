@@ -28,17 +28,17 @@ public abstract class ConfigGuiButton extends ConfigGuiElement {
     protected int contentLeft;
     protected int drawHeight;
 
+    public ConfigGuiButton(ConfigScreen screen, ConfigFieldContainer fieldData) throws IllegalAccessException {
+        this(screen, fieldData, true);
+    }
+
     protected ConfigGuiButton(ConfigScreen screen, ConfigFieldContainer fieldData, boolean initialize) throws IllegalAccessException {
         this.screen = screen;
         this.fieldData = fieldData;
         if (initialize) { initialize(); }
     }
 
-    protected ConfigGuiButton(ConfigScreen screen, ConfigFieldContainer fieldData) throws IllegalAccessException {
-        this(screen, fieldData, true);
-    }
-
-    protected void initialize() {
+    protected void initialize() throws IllegalAccessException {
         this.hasComment = !getComment().isEmpty();
     }
 
