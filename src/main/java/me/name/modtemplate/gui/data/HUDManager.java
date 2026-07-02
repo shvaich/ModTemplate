@@ -5,6 +5,7 @@ import me.name.modtemplate.gui.huds.ExampleHUD;
 import net.minecraft.client.Minecraft;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
 import net.minecraftforge.client.event.RenderGameOverlayEvent.ElementType;
+import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
 public class HUDManager {
@@ -15,6 +16,13 @@ public class HUDManager {
         registeredRenderers = new AbstractRenderer[]{
                 new ExampleHUD()
         };
+    }
+
+    private HUDManager() {}
+
+    public static void register() {
+        if (registeredRenderers.length == 0) return;
+        MinecraftForge.EVENT_BUS.register(new HUDManager());
     }
 
     @SubscribeEvent
