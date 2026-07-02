@@ -4,7 +4,7 @@
     "name": "${mod_name}",
     "description": "A Mod Template",
     "version": "${mod_version}",
-    "url": "",
+    "url": "https://github.com/shvaich/ModTemplate",
     "authorList": ["shvaich"],
     "credits": "shvaich",
     "logoFile": ""
