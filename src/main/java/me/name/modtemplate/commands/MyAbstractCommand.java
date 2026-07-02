@@ -1,6 +1,7 @@
 package me.name.modtemplate.commands;
 
 import me.name.modtemplate.utils.ChatUtil;
+import me.name.modtemplate.utils.StringUtil;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.EntityPlayerSP;
 import net.minecraft.command.CommandBase;
@@ -84,15 +85,15 @@ abstract class MyAbstractCommand extends CommandBase {
         return ChatUtil.centerLine(EnumChatFormatting.GOLD + name + "\n\n");
     }
 
-    protected static IChatComponent getHelpLineSimple(String command, String desc, String... aliases) {
-        return getHelpLine(command, desc, command, aliases);
+    protected static IChatComponent getHelpLine(String command, String desc, String shortcut) {
+        return getHelpLine(command, desc, command, shortcut);
     }
 
-    protected static IChatComponent getHelpLine(String command, String desc, String commandToPutOnClick, String... aliases) {
-        final String aliasStr = aliases.length == 0 ? "" : (
-                ". " + EnumChatFormatting.DARK_GRAY + "(" + String.join(", ", aliases) + ")"
+    protected static IChatComponent getHelpLine(String command, String desc, String commandToPutOnClick, String shortcut) {
+        final String shortcutStr = StringUtil.isEmpty(shortcut) ? "" : (
+                ". " + EnumChatFormatting.DARK_GRAY + "(" + shortcut + ")"
         );
-        return new ChatComponentText(EnumChatFormatting.YELLOW + command + EnumChatFormatting.GRAY + " - " + EnumChatFormatting.AQUA + desc + aliasStr + "\n")
+        return new ChatComponentText(EnumChatFormatting.YELLOW + command + EnumChatFormatting.GRAY + " - " + EnumChatFormatting.AQUA + desc + shortcutStr + "\n")
                 .setChatStyle(new ChatStyle()
                         .setChatHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, new ChatComponentText(EnumChatFormatting.GRAY + "Click to put the command in chat.")))
                         .setChatClickEvent(new ClickEvent(ClickEvent.Action.SUGGEST_COMMAND, commandToPutOnClick))
