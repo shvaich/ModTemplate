@@ -3,6 +3,7 @@ package me.name.modtemplate;
 import me.name.modtemplate.commands.CommandModTemplate;
 import me.name.modtemplate.config.ModTemplateConfig;
 import me.name.modtemplate.events.KeybindingListener;
+import me.name.modtemplate.events.ModAnnouncement;
 import me.name.modtemplate.gui.data.HUDManager;
 import net.minecraft.command.ICommand;
 import net.minecraftforge.client.ClientCommandHandler;
@@ -45,9 +46,11 @@ public class ModTemplate {
         );
 
         registerEvents(
-                new KeybindingListener(),
-                new HUDManager()
+                new ModAnnouncement(),
+                new KeybindingListener()
         );
+
+        HUDManager.register();
     }
 
     @Mod.EventHandler
